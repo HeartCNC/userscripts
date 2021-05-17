@@ -1,0 +1,10 @@
+.DS_Store
+.vscode
+
+node_modules
+*.log
+*.md
+*.lock
+*-lock.json
+
+test/

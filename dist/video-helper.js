@@ -3,7 +3,6 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1.0
 // @description  try to take over the world!
-// @author       heartcnc
 // @include      *.youku.com/v*
 // @include      *m.youku.com/*
 // @include      *.iqiyi.com/v_*
@@ -17,7 +16,198 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
   'use strict';
-  function setFrameVideo(e){const a=formatter(e.url,"url",window.location.origin+window.location.pathname);if("link"!==e.type){clear(),_frame.src=a;var r=document.querySelector(_planformRule[Parse.planform].wrap);console.warn(_planformRule[Parse.planform].wrap,r),r&&(r.innerHTML="",r.appendChild(_frame))}else window.open(a,"_blank")}function clear(){if("iqiyi"===Parse.planform){var e=document.querySelector(".qy-player-vippay-popup");e&&document.body.removeChild(e.parentElement)}}function getCurrentVideo(){return document.querySelector("video")}function formatter(e,a,r){return e.replaceAll("{{"+a+"}}",r)}var _color="#00bcd4",_planformRule={mg:{flag:/mgtv/,wrap:"#mgtv-player-wrap"},qq:{flag:/v.qq/,wrap:"#mod_player"},iqiyi:{flag:/iqiyi/,wrap:"#flashbox"},youku:{flag:/youku/,wrap:"#player"}},_parsePath=[{name:"芒果专线-1",url:"https://titan.mgtv.com.janan.net/mgtv1206/?url={{url}}",hide:["qq","iqiyi","youku"]},{name:"芒果专线-2",url:"https://plamgtvcache.ccyjjd.com/play.php?url={{url}}",hide:["qq","iqiyi","youku"]},{name:"B站-1",url:"https://vip.parwix.com:4433/player/analysis.php?v={{url}}",hide:["mg","qq"]},{name:"B站-2",url:"https://jx.nitian.info/cs.php?url={{url}}",hide:["mg","qq"]},{name:"久播",url:"https://jx.jiubojx.com/vip.php?url={{url}}"},{name:"蜜蜂",url:"https://api.dabaotv.cn/?url={{url}}"},{name:"ELW",url:"https://jx.elwtc.com/vip/?url={{url}}"},{name:"月亮云",url:"https://api.yueliangjx.com/?url={{url}}"},{name:"云解析",url:"https://api.qianhaijishi.net/?url={{url}}"},{name:"解析啦",url:"https://api.jiexi.la/?url={{url}}"},{name:"CK",url:"https://ckplayer.gdkaman.com/jiexi/?url={{url}}",hide:["mg"]},{name:"播放器",url:"http://www.dayunbo.com/v/?url={{url}}",type:"link"}],_frame=document.createElement("iframe");_frame.allowFullscreen="true",_frame.frameBorder="0",_frame.allowfullscreen="true",_frame.width="100%",_frame.height="100%";var _controls=[{name:"+15s",type:"currentTime",value:15},{name:"+5s",type:"currentTime",value:5},{name:"2.0",type:"playbackRate",value:2},{name:"1.75",type:"playbackRate",value:1.75},{name:"1.5",type:"playbackRate",value:1.5},{name:"1.25",type:"playbackRate",value:1.25},{name:"1",type:"playbackRate",value:1}],Parse={planform:null,init(){this.planform=this.getPlanform(window.location.href),this.initStyle(),this.initControl(),this.initEvent()},initStyle(){var e=document.createElement("link");e.rel="stylesheet",e.href="//at.alicdn.com/t/font_2320142_alfk2527dul.css";var a=document.createElement("style");a.innerHTML=".hparse{--primary-color:#2196f3;position:fixed;left:0;top:50%;transform:translateY(-50%);color:#fff;font-size:14px;z-index:99999999999}.hparse-item{position:relative;padding:8px;text-align:center;background-color:var(--primary-color);cursor:pointer}.hparse-item:nth-child(n+2){margin-top:8px}.hparse-item:hover .hparse-path-list,.hparse-item:hover .hparse-speed-list{display:block}.hparse-path-list,.hparse-speed-list{display:none;position:absolute;top:50%;right:0;width:100px;border-left:8px solid transparent;transform:translate(100%,-50%)}.hparse-path-wrap,.hparse-speed-wrap{border:1px solid var(--primary-color);background-color:var(--primary-color)}.hparse-path-item,.hparse-speed-item{padding:8px 0;text-align:center;transition:all linear .2s;overflow:hidden}.hparse-path-item:hover:not(.blur),.hparse-speed-item:hover:not(.blur){background-color:#fff;color:var(--primary-color)}.hparse-speed-control{display:inline-block;width:28px;height:28px;line-height:28px}.hparse-speed-control:hover{background-color:rgba(255,255,255,.3)}",document.head.appendChild(e),document.head.appendChild(a)},initControl(){var e=document.createElement("div");e.className="hparse",e.innerHTML='<div class="hparse-item"><i class="h5-icon icon-you-tube"></i><div class="hparse-path-list"><div class="hparse-path-wrap"></div></div></div><div class="hparse-item"><i class="h5-icon icon-sudu"></i><div class="hparse-speed-list"><div class="hparse-speed-wrap"></div></div></div>';var a=this.getPath(),r=e.querySelector(".hparse-path-wrap");a.forEach(function(e,a){var t=document.createElement("div");t.className="hparse-path-item",t.textContent=e.name,t.dataset.index=a,r.appendChild(t)}),r.addEventListener("click",function(e){var r=e.srcElement||e.target,t=a[r.dataset.index];setFrameVideo(t)});var t=this.getControls(),n=e.querySelector(".hparse-speed-wrap");t.forEach(function(e,a){var r=document.createElement("div");r.className="hparse-speed-item",r.textContent=e.name,r.dataset.index=a,n.appendChild(r)}),n.addEventListener("click",function(e){var a=e.srcElement||e.target,r=t[a.dataset.index],n=getCurrentVideo();n&&("currentTime"===r.type?n.currentTime+=r.value:n.playbackRate=r.value)}),document.body.appendChild(e)},initEvent(){document.addEventListener("click",function(e){var a=e.srcElement||e.target;a&&a.href&&(window.location.href=a.href)})},getPlanform(e=window.location.host){for(var a in _planformRule)if(_planformRule[a].flag.test(e))return a;return null},getPath(){for(var e=[],a=0,r=_parsePath.length;a<r;a++){var t=_parsePath[a];t.hide&&0!==t.hide.length&&-1!==t.hide.indexOf(this.planform)||e.push(t)}return e},getControls:()=>_controls.concat()};Parse.init();
-})();
+
+  var paths = [
+    {
+      name: '芒果专线-1',
+      url: 'https://titan.mgtv.com.janan.net/mgtv1206/?url={{url}}',
+      hide: ['qq', 'iqiyi', 'youku']
+    },
+    {
+      name: '芒果专线-2',
+      url: 'https://plamgtvcache.ccyjjd.com/play.php?url={{url}}',
+      hide: ['qq', 'iqiyi', 'youku']
+    },
+    {
+      name: 'B站-1',
+      url: 'https://vip.parwix.com:4433/player/analysis.php?v={{url}}',
+      hide: ['mg', 'qq']
+    },
+    {
+      name: 'B站-2',
+      url: 'https://jx.nitian.info/cs.php?url={{url}}',
+      hide: ['mg', 'qq']
+    },
+    {
+      name: '久播',
+      url: 'https://jx.jiubojx.com/vip.php?url={{url}}'
+    },
+    {
+      name: '蜜蜂',
+      url: 'https://api.dabaotv.cn/?url={{url}}'
+    },
+    {
+      name: 'ELW',
+      url: 'https://jx.elwtc.com/vip/?url={{url}}'
+    },
+    {
+      name: '月亮云',
+      url: 'https://api.yueliangjx.com/?url={{url}}'
+    },
+    {
+      name: '云解析',
+      url: 'https://api.qianhaijishi.net/?url={{url}}'
+    },
+    {
+      name: '解析啦',
+      url: 'https://api.jiexi.la/?url={{url}}'
+    },
+    {
+      name: 'CK',
+      url: 'https://ckplayer.gdkaman.com/jiexi/?url={{url}}',
+      hide: ['mg']
+    },
+    {
+      name: '播放器',
+      url: 'http://www.dayunbo.com/v/?url={{url}}',
+      type: 'link'
+    }
+  ];
+
+  var style = '.hparse{--primary-color:#2196f3;position:fixed;left:0;top:50%;transform:translateY(-50%);color:#fff;font-size:14px;z-index:99999999999}.hparse-item{position:relative;padding:8px;text-align:center;background-color:var(--primary-color);cursor:pointer}.hparse-item:nth-child(n+2){margin-top:8px}.hparse-item:hover .hparse-path-list,.hparse-item:hover .hparse-speed-list{display:block}.hparse-path-list,.hparse-speed-list{display:none;position:absolute;top:50%;right:0;width:100px;border-left:8px solid transparent;transform:translate(100%,-50%)}.hparse-path-wrap,.hparse-speed-wrap{border:1px solid var(--primary-color);background-color:var(--primary-color)}.hparse-path-item,.hparse-speed-item{padding:8px 0;text-align:center;transition:all linear .2s;overflow:hidden}.hparse-path-item:hover:not(.blur),.hparse-speed-item:hover:not(.blur){background-color:#fff;color:var(--primary-color)}.hparse-speed-control{display:inline-block;width:28px;height:28px;line-height:28px}.hparse-speed-control:hover{background-color:rgba(255,255,255,.3)}';
+
+  var planform = (function(host) {
+    if ( host === void 0 ) host = window.location.host;
+
+    for(var k in _planformRule) {
+      if (_planformRule[k].flag.test(host)) {
+        return k
+      }
+    }
+    return null
+  })();
+
+  function getPath() {
+    var filter = [];
+    for(var i = 0, l = paths.length; i < l; i++) {
+      var item = paths[i];
+      if (!item.hide || item.hide.length === 0 || item.hide.indexOf(planform) === -1) {
+        filter.push(item);
+      }
+    }
+    return filter
+  }
+
+  var Helper = function Helper() {
+    this.initStyle();
+    this.initControl();
+    this.initEvent();
+  };
+  Helper.prototype.initStyle = function initStyle () {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css';
+    var styleEl = document.createElement('style');
+    styleEl.innerHTML = style;
+  };
+  Helper.prototype.initControl = function initControl () {
+    var hparse = document.createElement('div');
+    hparse.className = 'hparse';
+    hparse.innerHTML = ''
+    + '<div class="hparse-item"><i class="h5-icon icon-you-tube"></i>'
+    + '<div class="hparse-path-list">'
+    + '<div class="hparse-path-wrap"></div>'
+    + '</div>'
+    + '</div>'
+
+    + '<div class="hparse-item"><i class="h5-icon icon-sudu"></i>'
+    + '<div class="hparse-speed-list">'
+    + '<div class="hparse-speed-wrap"></div>'
+    + '</div>'
+    + '</div>';
+
+    var path = getPath();
+    var pathWrap = hparse.querySelector('.hparse-path-wrap');
+    path.forEach(function(item, index) {
+      var node = document.createElement('div');
+      node.className = 'hparse-path-item';
+      node.textContent = item.name;
+      node.dataset.index = index;
+      pathWrap.appendChild(node);
+    });
+    pathWrap.addEventListener('click', function(e) {
+      var el = e.srcElement || e.target;
+      var parse = path[el.dataset.index];
+      setFrameVideo(parse);
+    });
+
+    var controls = controls.concat();
+    var speedWrap = hparse.querySelector('.hparse-speed-wrap');
+    controls.forEach(function(item, index) {
+      var node = document.createElement('div');
+      node.className = 'hparse-speed-item';
+      node.textContent = item.name;
+      node.dataset.index = index;
+      speedWrap.appendChild(node);
+    });
+    speedWrap.addEventListener('click', function(e) {
+      var el = e.srcElement || e.target;
+      var control = controls[el.dataset.index];
+      var video = getCurrentVideo();
+      if (video) {
+        if (control.type === 'currentTime') {
+          video.currentTime += control.value;
+        } else {
+          video.playbackRate = control.value;
+        }
+      }
+    });
+    document.body.appendChild(hparse);
+  };
+  Helper.prototype.initEvent = function initEvent () {
+    document.addEventListener('click', function(e) {
+      var el = e.srcElement || e.target;
+      if (el && el.href) {
+        window.location.href = el.href;
+      }
+    });
+  };
+
+  function setFrameVideo(parse) {
+    var playurl = formatter(parse.url, 'url', window.location.origin + window.location.pathname);
+    if (parse.type === 'link') {
+      window.open(playurl, '_blank');
+      return
+    }
+    clear();
+    _frame.src = playurl;
+    var videoWrap = document.querySelector(_planformRule[Parse.planform].wrap);
+    console.warn(_planformRule[Parse.planform].wrap, videoWrap);
+    if (videoWrap) {
+      videoWrap.innerHTML = '';
+      videoWrap.appendChild(_frame);
+    }
+  }
+
+  function clear() {
+    if (Parse.planform === 'iqiyi') {
+      var e = document.querySelector('.qy-player-vippay-popup');
+      if (e) {
+        document.body.removeChild(e.parentElement);
+      }
+    }
+  }
+
+  function getCurrentVideo() {
+    return document.querySelector('video')
+  }
+
+  function formatter(s, fs, v) {
+    return s.replaceAll('{{' + fs + '}}', v)
+  }
+
+  new Helper();
+
+}());
