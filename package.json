@@ -24,7 +24,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@actly/eslint-config-base": "0.1.0",
+    "@actly/eslint-config-base": "^0.1.1",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",

@@ -32,7 +32,9 @@ const createBanner = (manifest) => {
   for (const k in manifest) {
     let v = manifest[k]
     if (!Array.isArray(v)) {
-      v = [v]
+      v = [
+        v
+      ]
     }
     v.forEach(item => {
       s += (
@@ -60,10 +62,20 @@ const envs = {
   production: {
     input: resolve(`src/${target}/index.js`),
     dest: resolve(`dist/${target}.min.js`),
-    env: 'production',
+    env: 'development',
     banner,
     moduleName: camelize(target),
-    plugins: [terser()]
+    plugins: [
+      terser({
+        output: {
+          comments: function(node, comment) {
+            if (comment.type === 'comment1') {
+              return /@\w+|==\/?UserScript==/i.test(comment.value)
+            }
+          }
+        }
+      })
+    ]
   }
 }
 
@@ -88,7 +100,7 @@ const genConfig = (env) => {
     ].concat(opt.plugins || [])
   }
 
-  return [config]
+  return config
 }
 
 module.exports = genConfig(process.env.MODE)

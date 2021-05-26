@@ -79,7 +79,9 @@ export const paths = [
   {
     name: 'CK',
     url: 'https://ckplayer.gdkaman.com/jiexi/?url={{url}}',
-    hide: ['mg']
+    hide: [
+      'mg'
+    ]
   },
   {
     name: '播放器',
