@@ -1,12 +1,12 @@
 {
   "name": "userscripts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "UserScript build",
   "scripts": {
     "dev": "rollup -w -c scripts/config.js --environment MODE:development",
     "test": "jest",
     "build": "rollup -c scripts/config.js --environment MODE:production",
-    "lint": "eslint src scripts"
+    "lint": "eslint src scripts --fix"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,9 @@
   },
   "homepage": "https://github.com/HeartCNC/userscripts#readme",
   "dependencies": {
-    "axios": "^0.21.1",
-    "es6-promise": "^4.2.8"
   },
   "devDependencies": {
+    "@actly/eslint-config-base": "0.1.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
@@ -36,7 +35,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-istanbul": "^5.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "eslint": "^5.7.0",
+    "eslint": "^7.7.0",
     "jest": "^26.0.1",
     "minimist": "^1.2.0",
     "rollup": "^2.38.1",

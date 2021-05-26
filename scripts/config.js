@@ -1,25 +1,27 @@
-const path = require('path')
-const commonjs = require('rollup-plugin-commonjs')
-const nodeResolve = require('rollup-plugin-node-resolve')
-const alias = require('rollup-plugin-alias')
-const replace = require('rollup-plugin-replace')
-const buble = require('rollup-plugin-buble')
 import {
   terser
 } from 'rollup-plugin-terser'
 import {
   camelize
 } from './common'
-const resolve = p => path.resolve(__dirname, '../', p)
+const path = require('path')
+const commonjs = require('rollup-plugin-commonjs')
+const nodeResolve = require('rollup-plugin-node-resolve')
+const alias = require('rollup-plugin-alias')
+const replace = require('rollup-plugin-replace')
+const buble = require('rollup-plugin-buble')
+const resolve = p => {
+  return path.resolve(__dirname, '../', p)
+}
 const pkgJson = require('../package.json')
-const version = process.env.VERSION || pkgJson.version
+const version = pkgJson.version
 /**
  * userscript target
  */
 const target = 'video-helper'
 
 const aliases = {
-  '@': resolve('src'),
+  '@': resolve('src')
 }
 const placeholder = {
   __VERSION__: version
@@ -27,7 +29,7 @@ const placeholder = {
 const manifestJSON = require(resolve(`src/${target}/manifest.json`))
 const createBanner = (manifest) => {
   let s = ''
-  for(let k in manifest) {
+  for (const k in manifest) {
     let v = manifest[k]
     if (!Array.isArray(v)) {
       v = [v]
@@ -43,8 +45,8 @@ const createBanner = (manifest) => {
   return s
 }
 const banner =
-  `// ==UserScript==\n` +
-  createBanner(manifestJSON) +
+  '// ==UserScript==\n' +
+  createBanner(manifestJSON).replace('__VERSION__', version) +
   '// ==/UserScript==\n'
 
 const envs = {
@@ -61,9 +63,7 @@ const envs = {
     env: 'production',
     banner,
     moduleName: camelize(target),
-    plugins: [
-      terser()
-    ]
+    plugins: [terser()]
   }
 }
 
@@ -83,9 +83,9 @@ const genConfig = (env) => {
       nodeResolve(),
       commonjs(),
       alias(aliases),
-      replace(placeholder),
-      buble()
-    ].concat(opt.plugins || []),
+      buble(),
+      replace(placeholder)
+    ].concat(opt.plugins || [])
   }
 
   return [config]

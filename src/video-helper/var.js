@@ -1,4 +1,4 @@
-export const planform = {
+export const planforms = {
   mg: {
     flag: /mgtv/,
     wrap: '#mgtv-player-wrap'
@@ -21,22 +21,36 @@ export const paths = [
   {
     name: '芒果专线-1',
     url: 'https://titan.mgtv.com.janan.net/mgtv1206/?url={{url}}',
-    hide: ['qq', 'iqiyi', 'youku']
+    hide: [
+      'qq',
+      'iqiyi',
+      'youku'
+    ]
   },
   {
     name: '芒果专线-2',
     url: 'https://plamgtvcache.ccyjjd.com/play.php?url={{url}}',
-    hide: ['qq', 'iqiyi', 'youku']
+    hide: [
+      'qq',
+      'iqiyi',
+      'youku'
+    ]
   },
   {
     name: 'B站-1',
     url: 'https://vip.parwix.com:4433/player/analysis.php?v={{url}}',
-    hide: ['mg', 'qq']
+    hide: [
+      'mg',
+      'qq'
+    ]
   },
   {
     name: 'B站-2',
     url: 'https://jx.nitian.info/cs.php?url={{url}}',
-    hide: ['mg', 'qq']
+    hide: [
+      'mg',
+      'qq'
+    ]
   },
   {
     name: '久播',

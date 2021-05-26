@@ -1,7 +1,7 @@
 {
   "name": "Video Helper",
   "namespace": "http://tampermonkey.net/",
-  "version": "0.1.0",
+  "version": "__VERSION__",
   "description": "try to take over the world!",
   "include": [
     "*.youku.com/v*",

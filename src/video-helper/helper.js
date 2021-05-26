@@ -1,12 +1,13 @@
 import {
   style,
   controls,
-  paths
+  paths,
+  planforms
 } from './var'
 
 const planform = (function(host = window.location.host) {
-  for(var k in _planformRule) {
-    if (_planformRule[k].flag.test(host)) {
+  for (const k in planforms) {
+    if (planforms[k].flag.test(host)) {
       return k
     }
   }
@@ -14,9 +15,9 @@ const planform = (function(host = window.location.host) {
 })()
 
 function getPath() {
-  var filter = []
-  for(var i = 0, l = paths.length; i < l; i++) {
-    var item = paths[i]
+  const filter = []
+  for (let i = 0, l = paths.length; i < l; i++) {
+    const item = paths[i]
     if (!item.hide || item.hide.length === 0 || item.hide.indexOf(planform) === -1) {
       filter.push(item)
     }
@@ -30,57 +31,59 @@ class Helper {
     this.initControl()
     this.initEvent()
   }
+
   initStyle() {
-    var link = document.createElement('link')
+    const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css'
-    var styleEl = document.createElement('style')
+    const styleEl = document.createElement('style')
     styleEl.innerHTML = style
   }
+
   initControl() {
-    var hparse = document.createElement('div')
+    const hparse = document.createElement('div')
     hparse.className = 'hparse'
-    hparse.innerHTML = ''
-    + '<div class="hparse-item"><i class="h5-icon icon-you-tube"></i>'
-    + '<div class="hparse-path-list">'
-    + '<div class="hparse-path-wrap"></div>'
-    + '</div>'
-    + '</div>'
+    hparse.innerHTML = '' +
+      '<div class="hparse-item"><i class="h5-icon icon-you-tube"></i>' +
+      '<div class="hparse-path-list">' +
+      '<div class="hparse-path-wrap"></div>' +
+      '</div>' +
+      '</div>' +
 
-    + '<div class="hparse-item"><i class="h5-icon icon-sudu"></i>'
-    + '<div class="hparse-speed-list">'
-    + '<div class="hparse-speed-wrap"></div>'
-    + '</div>'
-    + '</div>'
+      '<div class="hparse-item"><i class="h5-icon icon-sudu"></i>' +
+      '<div class="hparse-speed-list">' +
+      '<div class="hparse-speed-wrap"></div>' +
+      '</div>' +
+      '</div>'
 
-    var path = getPath()
-    var pathWrap = hparse.querySelector('.hparse-path-wrap')
+    const path = getPath()
+    const pathWrap = hparse.querySelector('.hparse-path-wrap')
     path.forEach(function(item, index) {
-      var node = document.createElement('div')
+      const node = document.createElement('div')
       node.className = 'hparse-path-item'
       node.textContent = item.name
       node.dataset.index = index
       pathWrap.appendChild(node)
     })
     pathWrap.addEventListener('click', function(e) {
-      var el = e.srcElement || e.target
-      var parse = path[el.dataset.index]
+      const el = e.srcElement || e.target
+      const parse = path[el.dataset.index]
       setFrameVideo(parse)
     })
 
-    var controls = controls.concat()
-    var speedWrap = hparse.querySelector('.hparse-speed-wrap')
-    controls.forEach(function(item, index) {
-      var node = document.createElement('div')
+    const addcontrols = controls.concat()
+    const speedWrap = hparse.querySelector('.hparse-speed-wrap')
+    addcontrols.forEach(function(item, index) {
+      const node = document.createElement('div')
       node.className = 'hparse-speed-item'
       node.textContent = item.name
       node.dataset.index = index
       speedWrap.appendChild(node)
     })
     speedWrap.addEventListener('click', function(e) {
-      var el = e.srcElement || e.target
-      var control = controls[el.dataset.index]
-      var video = getCurrentVideo()
+      const el = e.srcElement || e.target
+      const control = addcontrols[el.dataset.index]
+      const video = getCurrentVideo()
       if (video) {
         if (control.type === 'currentTime') {
           video.currentTime += control.value
@@ -91,15 +94,22 @@ class Helper {
     })
     document.body.appendChild(hparse)
   }
+
   initEvent() {
     document.addEventListener('click', function(e) {
-      var el = e.srcElement || e.target
+      const el = e.srcElement || e.target
       if (el && el.href) {
         window.location.href = el.href
       }
     })
   }
 }
+const _frame = document.createElement('iframe')
+_frame.allowFullscreen = 'true'
+_frame.frameBorder = '0'
+_frame.allowfullscreen = 'true'
+_frame.width = '100%'
+_frame.height = '100%'
 
 function setFrameVideo(parse) {
   const playurl = formatter(parse.url, 'url', window.location.origin + window.location.pathname)
@@ -109,8 +119,8 @@ function setFrameVideo(parse) {
   }
   clear()
   _frame.src = playurl
-  var videoWrap = document.querySelector(_planformRule[Parse.planform].wrap)
-  console.warn(_planformRule[Parse.planform].wrap, videoWrap)
+  const videoWrap = document.querySelector(planforms[planform].wrap)
+  console.warn(planforms[planform].wrap, videoWrap)
   if (videoWrap) {
     videoWrap.innerHTML = ''
     videoWrap.appendChild(_frame)
@@ -118,8 +128,8 @@ function setFrameVideo(parse) {
 }
 
 function clear() {
-  if (Parse.planform === 'iqiyi') {
-    var e = document.querySelector('.qy-player-vippay-popup')
+  if (planform === 'iqiyi') {
+    const e = document.querySelector('.qy-player-vippay-popup')
     if (e) {
       document.body.removeChild(e.parentElement)
     }
