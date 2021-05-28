@@ -38,6 +38,8 @@ class Helper {
     link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css'
     const styleEl = document.createElement('style')
     styleEl.innerHTML = style
+    document.head.appendChild(link)
+    document.head.appendChild(styleEl)
   }
 
   initControl() {

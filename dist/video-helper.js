@@ -185,6 +185,8 @@
     link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css';
     var styleEl = document.createElement('style');
     styleEl.innerHTML = style;
+    document.head.appendChild(link);
+    document.head.appendChild(styleEl);
   };
 
   Helper.prototype.initControl = function initControl () {
