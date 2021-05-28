@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1.1
+// @version      0.1.2
 // @description  try to take over the world!
 // @include      *.youku.com/v*
 // @include      *m.youku.com/*
