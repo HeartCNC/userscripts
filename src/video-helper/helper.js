@@ -139,7 +139,8 @@ function clear() {
 }
 
 function getCurrentVideo() {
-  return document.querySelector('video')
+  // Fix youku.com
+  return document.querySelector('.h5-ext-layer video') || document.querySelector('video')
 }
 
 function formatter(s, fs, v) {

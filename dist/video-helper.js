@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1.2
+// @version      0.1.3
 // @description  try to take over the world!
 // @include      *.youku.com/v*
 // @include      *m.youku.com/*
@@ -285,7 +285,8 @@
   }
 
   function getCurrentVideo() {
-    return document.querySelector('video')
+    // Fix youku.com
+    return document.querySelector('.h5-ext-layer video') || document.querySelector('video')
   }
 
   function formatter(s, fs, v) {
