@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: require.resolve('babel-eslint'),
+    parser: 'babel-eslint',
     ecmaVersion: 2018,
     sourceType: 'module'
   },
@@ -10,14 +10,20 @@ module.exports = {
     node: true,
     browser: true
   },
-  plugins: [
-  ],
-  extends: [
-    '@actly/eslint-config-base'
-  ],
-  globals: {
-    "WXEnvironment": true
-  },
+  extends: ['standard', 'plugin:sonarjs/recommended'],
+  plugins: ['sonarjs'],
+  globals: {},
   rules: {
+    'array-element-newline': ['error', 'never'],
+    'array-bracket-newline': ['error', 'never'],
+    'operator-linebreak': ['error', 'before'],
+    'eol-last': 0,
+    'no-new': 'off',
+    'no-multiple-empty-lines': 1,
+    'arrow-parens': 0,
+    camelcase: 0,
+    'no-tabs': 'off',
+    'generator-star-spacing': 'off',
+    'space-before-function-paren': ['off', 'always']
   }
 }

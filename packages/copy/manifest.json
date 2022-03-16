@@ -1,0 +1,10 @@
+{
+  "name": "Copy-Content",
+  "namespace": "http://tampermonkey.net/",
+  "version": "0.1.0",
+  "description": "复制元素内容",
+  "include": [
+    "*"
+  ],
+  "grant": "none"
+}

@@ -3,9 +3,8 @@
   "version": "0.1.1",
   "description": "UserScript build",
   "scripts": {
-    "dev": "rollup -w -c scripts/config.js --environment MODE:development",
-    "test": "jest",
-    "build": "rollup -c scripts/config.js --environment MODE:production",
+    "dev": "rollup -w -c --mode=development",
+    "build": "rollup -c --mode=production",
     "lint": "eslint src scripts --fix"
   },
   "repository": {
@@ -22,9 +21,9 @@
   },
   "homepage": "https://github.com/HeartCNC/userscripts#readme",
   "dependencies": {
+    "clipboard": "~2.0.8"
   },
   "devDependencies": {
-    "@actly/eslint-config-base": "^0.1.1",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
@@ -32,7 +31,13 @@
     "@types/node": "^12.12.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
-    "eslint": "^7.7.0",
+    "eslint": "^7.22.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.0.1",
     "minimist": "^1.2.0",
     "rollup": "^2.38.1",
