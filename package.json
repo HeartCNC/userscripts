@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "rollup -w -c --mode=development",
     "build": "rollup -c --mode=production",
-    "lint": "eslint src scripts --fix"
+    "lint": "eslint packages utils --fix"
   },
   "repository": {
     "type": "git",

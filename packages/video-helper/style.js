@@ -2,10 +2,10 @@ const style = '.hparse{--primary-color:#2196f3;position:fixed;left:0;top:50%;tra
 
 export function createStyle() {
   const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css'
-    const styleEl = document.createElement('style')
-    styleEl.innerHTML = style
-    document.head.appendChild(link)
-    document.head.appendChild(styleEl)
+  link.rel = 'stylesheet'
+  link.href = '//at.alicdn.com/t/font_2320142_alfk2527dul.css'
+  const styleEl = document.createElement('style')
+  styleEl.innerHTML = style
+  document.head.appendChild(link)
+  document.head.appendChild(styleEl)
 }

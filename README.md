@@ -1,11 +1,27 @@
 # userscripts
 
-## Build
+## 快速开始
 
-### npm
+安装依赖
 
-`npm run build`
+```bash
+npm install
+```
 
-### yarn
+###开发
 
-`yarn build`
+创建新的包，只需要拷贝`template`文件夹至`packages`里，进行重命名即可
+
+```bash
+npm run dev --scope=video
+```
+
+`--scope`: 指定`packages`中的包，必须指定
+
+### 构建
+
+```bash
+npm run build --scope=video
+```
+
+`--scope`: 指定包，如果为空，则构建全部包

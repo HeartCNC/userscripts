@@ -19,56 +19,47 @@ const createBanner = (manifest) => {
     }
     v.forEach(item => {
       s += (
-          '// @' + k + (' '.repeat(13 - k.length)) +
-          item
-        ) +
-        '\n'
+        '// @' + k + (' '.repeat(13 - k.length))
+          + item
+      )
+        + '\n'
     })
   }
-  return '// ==UserScript==\n' +
-  s +
-  '// ==/UserScript==\n'
-
+  return '// ==UserScript==\n'
+  + s
+  + '// ==/UserScript==\n'
 }
 
 const plugins = {
   development: [],
-  production: [
-    terser({
-      output: {
-        comments: function (node, comment) {
-          if (comment.type === 'comment1') {
-            return /@\w+|==\/?UserScript==/i.test(comment.value)
-          }
+  production: [terser({
+    output: {
+      comments: function (node, comment) {
+        if (comment.type === 'comment1') {
+          return /@\w+|==\/?UserScript==/i.test(comment.value)
         }
       }
-    })
-  ]
+    }
+  })]
 }
 
 const genConfig = (scope) => {
   if (!scopes.includes(scope)) {
-    throw new Error(`[${scope}] not found in ${scopes.toString()}`)
+    throw new Error(`[${scope}] not found in [${scopes.toString()}]`)
   }
 
-  const config = {
+  return {
     env: mode,
     input: resolveScope(scope, 'index.js'),
     output: {
       format: 'iife',
-      file: isProd ? resolve(`dist/${scope}.min.js`) : resolve(`example/app.js`),
+      file: isProd ? resolve(`dist/${scope}.min.js`) : resolve('example/app.js'),
       banner: createBanner(
         require(resolveScope(scope, 'manifest.json'))
       )
     },
-    plugins: [
-      nodeResolve(),
-      commonjs(),
-      buble()
-    ].concat(plugins[mode])
+    plugins: [nodeResolve(), commonjs(), buble()].concat(plugins[mode])
   }
-
-  return config
 }
 
 const createConfig = () => {

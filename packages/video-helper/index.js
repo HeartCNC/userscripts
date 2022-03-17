@@ -1,5 +1,5 @@
-import { createStyle } from "./style";
-import { createView } from "./view";
+import { createStyle } from './style'
+import { createView } from './view'
 
 createStyle()
 createView()

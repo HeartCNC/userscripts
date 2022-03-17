@@ -1,4 +1,4 @@
-import { paths, controls } from "./var"
+import { paths, controls } from './var'
 
 export const planforms = {
   mg: {
@@ -42,18 +42,18 @@ function getPath() {
 export function createView() {
   const hparse = document.createElement('div')
   hparse.className = 'hparse'
-  hparse.innerHTML = '' +
-    '<div class="hparse-item"><i class="h5-icon icon-you-tube"></i>' +
-    '<div class="hparse-path-list">' +
-    '<div class="hparse-path-wrap"></div>' +
-    '</div>' +
-    '</div>' +
+  hparse.innerHTML = ''
+    + '<div class="hparse-item"><i class="h5-icon icon-you-tube"></i>'
+    + '<div class="hparse-path-list">'
+    + '<div class="hparse-path-wrap"></div>'
+    + '</div>'
+    + '</div>'
 
-    '<div class="hparse-item"><i class="h5-icon icon-sudu"></i>' +
-    '<div class="hparse-speed-list">' +
-    '<div class="hparse-speed-wrap"></div>' +
-    '</div>' +
-    '</div>'
+    + '<div class="hparse-item"><i class="h5-icon icon-sudu"></i>'
+    + '<div class="hparse-speed-list">'
+    + '<div class="hparse-speed-wrap"></div>'
+    + '</div>'
+    + '</div>'
 
   const path = getPath()
   const pathWrap = hparse.querySelector('.hparse-path-wrap')

@@ -14,8 +14,6 @@ module.exports = {
   plugins: ['sonarjs'],
   globals: {},
   rules: {
-    'array-element-newline': ['error', 'never'],
-    'array-bracket-newline': ['error', 'never'],
     'operator-linebreak': ['error', 'before'],
     'eol-last': 0,
     'no-new': 'off',
