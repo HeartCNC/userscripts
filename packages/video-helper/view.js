@@ -7,7 +7,7 @@ export const planforms = {
   },
   qq: {
     flag: /v.qq/,
-    wrap: '#mod_player'
+    wrap: '#player-container'
   },
   iqiyi: {
     flag: /iqiyi/,

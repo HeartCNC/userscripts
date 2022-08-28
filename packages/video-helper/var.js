@@ -1,24 +1,19 @@
 export const paths = [
   {
-    name: '芒果专线-1',
-    url: 'https://plamgtvcache.ccyjjd.com/play.php?url={{url}}',
-    hide: [
-      'qq',
-      'iqiyi',
-      'youku'
-    ]
+    name: 'MaoPlayer',
+    url: 'https://www.mtosz.com/erzi.php?url={{url}}'
+  },
+  {
+    name: 'NXPlayer',
+    url: 'https://www.nxflv.com/?url={{url}}'
+  },
+  {
+    name: 'okjx',
+    url: 'https://okjx.cc/?url={{url}}'
   },
   {
     name: 'B站-1',
     url: 'https://vip.parwix.com:4433/player/analysis.php?v={{url}}',
-    hide: [
-      'mg',
-      'qq'
-    ]
-  },
-  {
-    name: 'B站-2',
-    url: 'https://jx.nitian.info/cs.php?url={{url}}',
     hide: [
       'mg',
       'qq'
