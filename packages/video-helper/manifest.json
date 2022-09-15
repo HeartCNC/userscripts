@@ -1,7 +1,7 @@
 {
   "name": "Video Helper",
   "namespace": "http://tampermonkey.net/",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "优酷、爱奇艺、芒果TV、腾讯视频VIP助手",
   "include": [
     "*.youku.com/v*",

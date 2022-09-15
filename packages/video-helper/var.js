@@ -20,15 +20,8 @@ export const paths = [
     ]
   },
   {
-    name: '解析啦',
-    url: 'https://api.jiexi.la/?url={{url}}'
-  },
-  {
-    name: 'CK',
-    url: 'https://ckplayer.gdkaman.com/jiexi/?url={{url}}',
-    hide: [
-      'mg'
-    ]
+    name: 'JY',
+    url: 'https://jx.playerjy.com/?url={{url}}'
   }
 ]
 
