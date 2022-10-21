@@ -8,16 +8,16 @@ export const paths = [
     url: 'https://www.nxflv.com/?url={{url}}'
   },
   {
+    name: '4K',
+    url: 'https://jx.4kdv.com/?url={{url}}'
+  },
+  {
     name: 'okjx',
     url: 'https://okjx.cc/?url={{url}}'
   },
   {
     name: 'B站-1',
-    url: 'https://vip.parwix.com:4433/player/analysis.php?v={{url}}',
-    hide: [
-      'mg',
-      'qq'
-    ]
+    url: 'https://vip.parwix.com:4433/player/analysis.php?v={{url}}'
   },
   {
     name: 'JY',
