@@ -1,10 +1,14 @@
 export const paths = [
   {
-    name: 'MaoPlayer',
+    name: 'XM',
+    url: 'https://dm.xmflv.com:4433/?url={{url}}'
+  },
+  {
+    name: 'Mao',
     url: 'https://www.mtosz.com/erzi.php?url={{url}}'
   },
   {
-    name: 'NXPlayer',
+    name: 'NX',
     url: 'https://www.nxflv.com/?url={{url}}'
   },
   {
