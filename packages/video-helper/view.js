@@ -16,6 +16,10 @@ export const planforms = {
   youku: {
     flag: /youku/,
     wrap: '#player'
+  },
+  bilibili: {
+    flag: /bilibili/,
+    wrap: '#player_module'
   }
 }
 

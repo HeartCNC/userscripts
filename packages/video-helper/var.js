@@ -1,5 +1,9 @@
 export const paths = [
   {
+    name: 'JSON',
+    url: 'https://jx.jsonplayer.com/player/?url={{url}}'
+  },
+  {
     name: 'XM',
     url: 'https://dm.xmflv.com:4433/?url={{url}}'
   },
