@@ -1,4 +1,6 @@
-export const paths = [
+import { lastVideoKey } from './util'
+
+const paths = [
   {
     name: 'JSON',
     url: 'https://jx.jsonplayer.com/player/?url={{url}}'
@@ -30,8 +32,25 @@ export const paths = [
   {
     name: 'JY',
     url: 'https://jx.playerjy.com/?url={{url}}'
+  },
+  {
+    name: 'jiexila',
+    url: 'https://www.jiexila.com/?url={{url}}'
   }
 ]
+
+const url = localStorage.getItem(lastVideoKey)
+
+if (url) {
+  paths.unshift({
+    name: '上次使用',
+    url
+  })
+}
+
+export {
+  paths
+}
 
 export const controls = [
   {

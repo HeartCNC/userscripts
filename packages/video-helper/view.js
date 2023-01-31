@@ -1,42 +1,11 @@
+import { lastVideoKey, platform, platforms } from './util'
 import { paths, controls } from './var'
-
-export const planforms = {
-  mg: {
-    flag: /mgtv/,
-    wrap: '#mgtv-player-wrap'
-  },
-  qq: {
-    flag: /v.qq/,
-    wrap: '#player-container'
-  },
-  iqiyi: {
-    flag: /iqiyi/,
-    wrap: '#flashbox'
-  },
-  youku: {
-    flag: /youku/,
-    wrap: '#player'
-  },
-  bilibili: {
-    flag: /bilibili/,
-    wrap: '#player_module'
-  }
-}
-
-const planform = (function(host = window.location.host) {
-  for (const k in planforms) {
-    if (planforms[k].flag.test(host)) {
-      return k
-    }
-  }
-  return null
-})()
 
 function getPath() {
   const filter = []
   for (let i = 0, l = paths.length; i < l; i++) {
     const item = paths[i]
-    if (!item.hide || item.hide.length === 0 || item.hide.indexOf(planform) === -1) {
+    if (!item.hide || item.hide.length === 0 || item.hide.indexOf(platform) === -1) {
       filter.push(item)
     }
   }
@@ -106,7 +75,7 @@ _frame.width = '100%'
 _frame.height = '100%'
 
 function setFrameVideo(parse) {
-  if (!planform) return
+  if (!platform) return
   const playurl = formatter(parse.url, 'url', window.location.origin + window.location.pathname)
   if (parse.type === 'link') {
     window.open(playurl, '_blank')
@@ -114,8 +83,8 @@ function setFrameVideo(parse) {
   }
   clear()
   _frame.src = playurl
-  const videoWrap = document.querySelector(planforms[planform].wrap)
-  console.warn(planforms[planform].wrap, videoWrap)
+  localStorage.setItem(lastVideoKey, parse.url)
+  const videoWrap = document.querySelector(platforms[platform].wrap)
   if (videoWrap) {
     videoWrap.innerHTML = ''
     videoWrap.appendChild(_frame)
@@ -123,7 +92,7 @@ function setFrameVideo(parse) {
 }
 
 function clear() {
-  if (planform === 'iqiyi') {
+  if (platform === 'iqiyi') {
     const e = document.querySelector('.qy-player-vippay-popup')
     if (e) {
       document.body.removeChild(e.parentElement)

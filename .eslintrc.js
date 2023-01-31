@@ -12,7 +12,6 @@ module.exports = {
   },
   extends: ['standard', 'plugin:sonarjs/recommended'],
   plugins: ['sonarjs'],
-  globals: {},
   rules: {
     'operator-linebreak': ['error', 'before'],
     'eol-last': 0,
@@ -23,5 +22,8 @@ module.exports = {
     'no-tabs': 'off',
     'generator-star-spacing': 'off',
     'space-before-function-paren': ['off', 'always']
+  },
+  globals: {
+    $: 'readonly'
   }
 }

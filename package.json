@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "UserScript build",
   "scripts": {
-    "dev": "rollup -w -c --mode=development",
+    "dev": "rollup -w -c --mode=development --scope=video-helper",
     "build": "rollup -c --mode=production",
     "lint": "eslint packages utils --fix"
   },
