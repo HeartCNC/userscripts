@@ -19,11 +19,11 @@ export const platforms = {
   },
   bilibili: {
     flag: /bilibili/,
-    wrap: '#player_module'
+    wrap: '#bilibili-player'
   }
 }
 
-export const platform = (function(host = window.location.host) {
+export const platform = (function (host = window.location.host) {
   for (const k in platforms) {
     if (platforms[k].flag.test(host)) {
       return k

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1.9
+// @version      0.1.10
 // @description  优酷、爱奇艺、芒果TV、腾讯视频、哔哩哔哩VIP助手
 // @include      *.youku.com/v*
 // @include      *m.youku.com/*
@@ -41,11 +41,11 @@
     },
     bilibili: {
       flag: /bilibili/,
-      wrap: '#player_module'
+      wrap: '#bilibili-player'
     }
   };
 
-  var platform = (function(host) {
+  var platform = (function (host) {
     if ( host === void 0 ) host = window.location.host;
 
     for (var k in platforms) {
@@ -111,6 +111,10 @@
     {
       name: 'JY',
       url: 'https://jx.playerjy.com/?url={{url}}'
+    },
+    {
+      name: 'jiexila',
+      url: 'https://www.jiexila.com/?url={{url}}'
     }
   ];
 
