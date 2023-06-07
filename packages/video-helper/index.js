@@ -12,9 +12,31 @@ createView()
 // })
 
 if (platform === 'qq') {
-  $('.playlist-rect__col [data-vid]').off('click').on('click', function() {
-    location.href = `https://v.qq.com/x/cover/${this.dataset.cid}/${this.dataset.vid}.html`
-  })
+  $('.playlist-rect__col [data-vid]')
+    .off('click')
+    .on('click', function () {
+      location.href = `https://v.qq.com/x/cover/${this.dataset.cid}/${this.dataset.vid}.html`
+    })
+}
+
+document.addEventListener('click', addEvent)
+
+function initSuccess() {
+  document.removeEventListener('click', addEvent)
+}
+function addEvent() {
+  if (platform === 'iqiyi') {
+    const el = document.querySelector('.qy-episode-num')
+    if (el) {
+      el.addEventListener('click', function () {
+        setTimeout(() => {
+          location.reload()
+        }, 1000)
+      })
+
+      initSuccess()
+    }
+  }
 }
 
 // qq

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Video Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1.10
+// @version      0.1.11
 // @description  优酷、爱奇艺、芒果TV、腾讯视频、哔哩哔哩VIP助手
 // @include      *.youku.com/v*
 // @include      *m.youku.com/*
@@ -288,9 +288,31 @@
   // })
 
   if (platform === 'qq') {
-    $('.playlist-rect__col [data-vid]').off('click').on('click', function() {
-      location.href = "https://v.qq.com/x/cover/" + (this.dataset.cid) + "/" + (this.dataset.vid) + ".html";
-    });
+    $('.playlist-rect__col [data-vid]')
+      .off('click')
+      .on('click', function () {
+        location.href = "https://v.qq.com/x/cover/" + (this.dataset.cid) + "/" + (this.dataset.vid) + ".html";
+      });
+  }
+
+  document.addEventListener('click', addEvent);
+
+  function initSuccess() {
+    document.removeEventListener('click', addEvent);
+  }
+  function addEvent() {
+    if (platform === 'iqiyi') {
+      var el = document.querySelector('.qy-episode-num');
+      if (el) {
+        el.addEventListener('click', function () {
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
+        });
+
+        initSuccess();
+      }
+    }
   }
 
   // qq
