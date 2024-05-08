@@ -2,6 +2,10 @@ import { lastVideoKey } from './util'
 
 const paths = [
   {
+    name: 'ovvo',
+    url: 'https://json.ovvo.pro/jx.php?url={{url}}'
+  },
+  {
     name: 'JSON',
     url: 'https://jx.jsonplayer.com/player/?url={{url}}'
   },
@@ -20,10 +24,6 @@ const paths = [
   {
     name: '4K',
     url: 'https://jx.4kdv.com/?url={{url}}'
-  },
-  {
-    name: 'okjx',
-    url: 'https://okjx.cc/?url={{url}}'
   },
   {
     name: 'B站-1',
@@ -48,9 +48,7 @@ if (url) {
   })
 }
 
-export {
-  paths
-}
+export { paths }
 
 export const controls = [
   {

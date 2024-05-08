@@ -1,6 +1,6 @@
 {
   "name": "userscripts",
-  "version": "0.1.1",
+  "version": "0.1.13",
   "description": "UserScript build",
   "scripts": {
     "dev": "rollup -w -c --mode=development --scope=video-helper",
