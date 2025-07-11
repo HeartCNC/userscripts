@@ -6,12 +6,8 @@ const paths = [
     url: 'https://json.ovvo.pro/jx.php?url={{url}}'
   },
   {
-    name: 'JSON',
-    url: 'https://jx.jsonplayer.com/player/?url={{url}}'
-  },
-  {
     name: 'XM',
-    url: 'https://dm.xmflv.com:4433/?url={{url}}'
+    url: 'https://jx.xmflv.com/?url={{url}}'
   },
   {
     name: 'JY',
