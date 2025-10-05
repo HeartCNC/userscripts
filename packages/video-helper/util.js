@@ -20,6 +20,10 @@ export const platforms = {
   bilibili: {
     flag: /bilibili/,
     wrap: '#bilibili-player'
+  },
+  sohu: {
+    flag: /sohu/,
+    wrap: '#player'
   }
 }
 
