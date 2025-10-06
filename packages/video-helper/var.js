@@ -2,6 +2,10 @@ import { lastVideoKey } from './util'
 
 const paths = [
   {
+    name: 'xy',
+    url: 'https://jx.xymp4.cc/?url={{url}}'
+  },
+  {
     name: 'ovvo',
     url: 'https://json.ovvo.pro/jx.php?url={{url}}'
   },
