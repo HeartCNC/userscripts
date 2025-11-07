@@ -11,7 +11,7 @@ export const platforms = {
   },
   iqiyi: {
     flag: /iqiyi/,
-    wrap: '#flashbox'
+    wrap: '#video'
   },
   youku: {
     flag: /youku/,
